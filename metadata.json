@@ -1,0 +1,5 @@
+{
+  "name": "Energy Consumption Dashboard",
+  "description": "A dashboard for consumers of electric energy to visualize their hourly consumption and current electricity prices, helping them make informed decisions about their usage.",
+  "requestFramePermissions": []
+}

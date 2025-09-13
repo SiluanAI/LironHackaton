@@ -1,27 +1,26 @@
-
 import React from 'react';
 
 interface StatCardProps {
-  icon: React.ReactNode;
   title: string;
   value: string;
   unit: string;
-  colorClass: string;
+  valueColorClass?: string;
+  context?: string;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ icon, title, value, unit, colorClass }) => {
+const StatCard: React.FC<StatCardProps> = ({ title, value, unit, valueColorClass = 'text-slate-800', context }) => {
   return (
-    <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-700 flex items-center space-x-4 transition-all duration-300 hover:border-gray-600 hover:bg-gray-800/70">
-      <div className={`p-3 rounded-lg ${colorClass}`}>
-        {icon}
+    <div className="bg-white p-4 rounded-2xl border border-slate-200 transition-all duration-300 hover:border-blue-300 hover:shadow-md">
+      <p className="text-sm font-medium text-slate-500">{title}</p>
+      <div className="flex items-baseline space-x-1.5 mt-1">
+        <p className={`text-3xl font-bold ${valueColorClass}`}>{value}</p>
+        <span className="text-sm text-slate-500 font-medium">{unit}</span>
       </div>
-      <div>
-        <p className="text-sm font-medium text-gray-400">{title}</p>
-        <div className="flex items-baseline space-x-2">
-            <p className="text-2xl font-semibold text-white">{value}</p>
-            <span className="text-sm text-gray-300">{unit}</span>
-        </div>
-      </div>
+      {context && (
+        <p className="text-xs text-slate-400 font-medium mt-1 truncate">
+          {context}
+        </p>
+      )}
     </div>
   );
 };

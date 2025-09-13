@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <div className="flex items-center space-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-10 text-cyan-400"
+          className="h-10 w-10 text-blue-600"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -19,7 +19,7 @@ const Header: React.FC = () => {
             d="M13 10V3L4 14h7v7l9-11h-7z"
           />
         </svg>
-        <h1 className="text-3xl font-bold tracking-tight text-white">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-800">
           Energy Consumption Dashboard
         </h1>
       </div>

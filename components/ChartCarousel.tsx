@@ -43,14 +43,16 @@ const ChartCarousel: React.FC<ChartCarouselProps> = ({ data }) => {
   const secondHalfData = data.slice(midPoint);
   
   const slides = [
-      { data: firstHalfData, label: "First Half (00:00 - 11:45)" },
-      { data: secondHalfData, label: "Second Half (12:00 - 23:45)" }
+      { data: firstHalfData, label: "First Half (00:00 - 11:00)" },
+      { data: secondHalfData, label: "Second Half (12:00 - 23:00)" }
   ].filter(slide => slide.data.length > 0);
 
   if (slides.length === 0) {
       return (
-        <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-700 mt-6 h-[500px] flex items-center justify-center">
-            <p className="text-gray-400">No consumption data to display for this period.</p>
+        <div className="mt-6 mb-12 max-w-6xl mx-auto">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 aspect-video md:aspect-[2/1] flex items-center justify-center">
+              <p className="text-slate-500">No consumption data to display for this period.</p>
+          </div>
         </div>
       );
   }
@@ -58,7 +60,7 @@ const ChartCarousel: React.FC<ChartCarouselProps> = ({ data }) => {
   const currentIndex = Math.min(activeIndex, slides.length - 1);
 
   return (
-    <div className="mt-6 mb-12">
+    <div className="mt-6 mb-12 max-w-6xl mx-auto">
       <div 
         className="overflow-hidden"
         onTouchStart={handleTouchStart}
@@ -71,13 +73,18 @@ const ChartCarousel: React.FC<ChartCarouselProps> = ({ data }) => {
         >
           {slides.map((slide, index) => (
             <div key={index} className="flex-shrink-0 w-full">
-              <UsageChart data={slide.data} />
+              <UsageChart 
+                data={slide.data} 
+                xAxisDataKey="time"
+                lineDataKey="usageKWh"
+                showArea={true}
+              />
             </div>
           ))}
         </div>
       </div>
       
-      <div className="text-center text-sm text-gray-400 font-medium mt-4">
+      <div className="text-center text-sm text-slate-500 font-medium mt-4">
         {slides[currentIndex]?.label || ''}
       </div>
 
@@ -88,7 +95,7 @@ const ChartCarousel: React.FC<ChartCarouselProps> = ({ data }) => {
                 key={index}
                 onClick={() => setActiveIndex(index)}
                 className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-                  currentIndex === index ? 'bg-cyan-400' : 'bg-gray-600 hover:bg-gray-500'
+                  currentIndex === index ? 'bg-blue-600' : 'bg-slate-300 hover:bg-slate-400'
                 }`}
                 aria-label={`Go to chart for ${slides[index].label}`}
             ></button>

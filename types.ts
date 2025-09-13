@@ -21,3 +21,13 @@ export interface PriceInfo {
     price: number;
     tier: PriceTier;
 }
+
+export interface LiveConsumptionData {
+  time: string;
+  powerW: number;
+}
+
+export interface HistoricalTotals {
+    totalKWh: number;
+    totalCost: number;
+}
